@@ -36,7 +36,7 @@ public class FormTest {
 
     @Test
     void shouldOpenSite() {
-        driver.get("http://localhost:9999/");
+        driver.get("http://localhost:7777/");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Илья ");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79997876636");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();

@@ -5,8 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,16 +15,16 @@ public class FormTest {
 
     @BeforeAll
     static void setUpAll() {
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.edgedriver().setup();
     }
 
     @BeforeEach
     void setUp() {
-        ChromeOptions options = new ChromeOptions();
+        EdgeOptions options = new EdgeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
-        driver = new ChromeDriver(options);
+        driver = new EdgeDriver(options);
 
     }
 
@@ -35,10 +35,10 @@ public class FormTest {
     }
 
     @Test
-    void shouldOpenSite() throws InterruptedException {
+    void shouldOpenSite() {
         driver.get("http://localhost:9999/");
-        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Анастасия ");
-        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79522771236");
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Илья ");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79997876636");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.tagName("button")).click();
         String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";

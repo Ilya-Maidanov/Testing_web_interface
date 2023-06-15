@@ -15,7 +15,7 @@ public class FormTest {
 
     @BeforeAll
     static void setUpAll() {
-        System.setProperty("webdriver.chrome.driver", "./driver/win/chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
@@ -25,6 +25,7 @@ public class FormTest {
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
+        driver.get("http://localhost:9999/");
 
     }
 
@@ -36,7 +37,6 @@ public class FormTest {
 
     @Test
     void shouldOpenSite() throws InterruptedException {
-        driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Илья ");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79997876636");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();

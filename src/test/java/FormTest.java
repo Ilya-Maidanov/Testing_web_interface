@@ -5,8 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,16 +15,16 @@ public class FormTest {
 
     @BeforeAll
     static void setUpAll() {
-        WebDriverManager.edgedriver().setup();
+        WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
     void setUp() {
-        EdgeOptions options = new EdgeOptions();
+        ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
-        driver = new EdgeDriver(options);
+        driver = new ChromeDriver(options);
 
     }
 
@@ -35,7 +35,7 @@ public class FormTest {
     }
 
     @Test
-    void shouldOpenSite() {
+    void shouldOpenSite() throws InterruptedException {
         driver.get("http://localhost:7777/");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Илья ");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79997876636");
